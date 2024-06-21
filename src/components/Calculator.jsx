@@ -24,6 +24,7 @@ const Calculator = ({toggle}) => {
     "^": "**",
     "√": "Math.sqrt",
     "∛": "Math.cbrt",
+    "y√": "(x, y) => Math.pow(x, 1/y)", 
     "x": "*",
     "x2": "**2",
     "x3": "**3",
@@ -86,6 +87,15 @@ const Calculator = ({toggle}) => {
         setExpression(expression.slice(0, -1));
       }
     } else if (sciFunc.hasOwnProperty(value)) {
+      if (value === "y√") {
+        // Implement logic for nth root operation
+        const lastNum = extractLastNum(expression);
+        if (lastNum != null) {
+          const num = parseFloat(lastNum);
+          setDisplayEXP(displayEXP + `√(`);
+          setExpression(expression + `,`);
+          setResult("√");
+        }}
       setDisplayEXP(displayEXP + value);
       setExpression(expression + sciFunc[value]);
     } else if (value === "x!") {
@@ -155,7 +165,7 @@ const Calculator = ({toggle}) => {
       <KeysWindow  handleButton={handleButton} />
       <button onClick={() => handleButton("mode")}>Mode: {mode}</button>
 
-      <p style={{font:"small-caption"}}>Please use brackets for trigonometric and logarithmic functions i.e. sin(x) cos(x) log10(x)</p>
+      <p style={{font:"small-caption"}}>Please use brackets for roots,  trigonometric and logarithmic functions i.e. sin(x) cos(x) log10(x)</p>
 
       
       
