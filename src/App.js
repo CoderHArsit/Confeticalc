@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Calculator from "./components/Calculator";
+import { DarkModeSwitch } from 'react-toggle-dark-mode';
 
-function App() {
+const App = () => {
+  const [toggle,setToggle]=useState('dark');
+  const [isDarkMode, setDarkMode] = React.useState(true);
+  const handletog=(checked)=>{
+    
+    setToggle(toggle==='light'?'dark':'light');
+    setDarkMode(checked);
+
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={`App ${toggle}`}>
+      <div style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
+      <h2>Confetti Calculator</h2> 
+       <p>
+       <DarkModeSwitch
+       style={{marginBlock:"20px",marginLeft:"20px"}}
+      checked={isDarkMode}
+      onChange={handletog}
+      size={30}
+    />
+       </p>
+      </div>
+      
+      <Calculator toggle={toggle} />
+      
     </div>
   );
-}
+};
 
 export default App;
