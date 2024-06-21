@@ -1,6 +1,3 @@
-Creating a README file for your calculator project on GitHub is essential for providing an overview of the project, its features, how to use it, and any other pertinent information for users and potential contributors. Below is a template for your calculator project's README:
-
----
 
 # Calculator 
 
